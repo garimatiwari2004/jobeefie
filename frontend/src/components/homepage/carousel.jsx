@@ -37,34 +37,41 @@ const testimonials = [
 ];
 
 export default function TestimonialCarousel() {
+  const sliderFix = `
+    .slick-slide > div {
+      margin: 0 12px;
+    }
+    .slick-list {
+      margin: 0 -12px;
+    }
+  `;
+
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
+    adaptiveHeight: true,
     responsive: [
-      {
-        breakpoint: 1024,
-        settings: { slidesToShow: 2 },
-      },
-      {
-        breakpoint: 640,
-        settings: { slidesToShow: 1 },
-      },
+      { breakpoint: 1024, settings: { slidesToShow: 2 } },
+      { breakpoint: 640, settings: { slidesToShow: 1 } },
     ],
   };
 
   return (
     <div className="max-w-7xl mx-auto py-16 px-4">
+      <style>{sliderFix}</style>
+
       <p className="text-orange-400 font-semibold text-sm mb-2">Testimonials</p>
       <h2 className="text-3xl font-bold mb-2">Success Stories</h2>
       <p className="text-gray-500 mb-8">
         Hear from students who found their dream opportunities through Jobeefie
       </p>
+
       <Slider {...settings}>
         {testimonials.map((t, idx) => (
-          <div key={idx} className="p-4">
+          <div key={idx} className="!w-full">
             <div className="bg-white shadow-md rounded-lg p-6 h-full flex flex-col justify-between">
               <div className="flex items-center gap-4 mb-4">
                 <div className="bg-orange-400 text-white font-bold w-10 h-10 flex items-center justify-center rounded-full">
@@ -75,7 +82,9 @@ export default function TestimonialCarousel() {
                   <p className="text-gray-400 text-sm">{t.role}</p>
                 </div>
               </div>
+
               <p className="text-gray-600 italic mb-4">"{t.text}"</p>
+
               <div className="flex gap-1">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <span key={i} className="text-yellow-400">★</span>
