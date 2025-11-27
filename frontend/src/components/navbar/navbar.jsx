@@ -96,12 +96,16 @@ export default function Navbar() {
             More ▼
           </a>
 
-          <button className="px-5 py-2 rounded-lg border border-orange-500 text-orange-600">
-            Login
-          </button>
-          <button className="px-5 py-2 rounded-lg bg-orange-600 text-white font-semibold">
-            Register
-          </button>
+          {!isSignedIn ? (
+            <button
+              className="px-5 py-2 rounded-lg border border-orange-500 text-orange-600 hover:bg-orange-50"
+              onClick={() => clerk.openSignIn()}
+            >
+              Login
+            </button>
+          ) : (
+            <UserButton />
+          )}
         </div>
       </div>
     </nav>
