@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useClerk, UserButton, useUser } from "@clerk/clerk-react";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const { isSignedIn } = useUser();
+  const clerk = useClerk();
 
   return (
     <nav className="w-full fixed z-50 shadow-sm bg-white">
@@ -41,13 +45,20 @@ export default function Navbar() {
             More <span>▼</span>
             <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-orange-600 transition-all duration-300 group-hover:w-full"></span>
           </a>
+          {!isSignedIn ? (
+            <button
+              className="px-5 py-2 rounded-lg border border-orange-500 text-orange-600 hover:bg-orange-50"
+              onClick={() => clerk.openSignIn()}
+            >
+              Login
+            </button>
+          ) : (
+            <UserButton />
+          )}
 
-          <button className="px-5 py-2 rounded-lg border border-orange-500 text-orange-600 hover:bg-orange-50">
-            Login
-          </button>
-          <button className="px-5 py-2 rounded-lg bg-orange-600 text-white font-semibold hover:bg-orange-700 shadow">
+          {/* <button className="px-5 py-2 rounded-lg bg-orange-600 text-white font-semibold hover:bg-orange-700 shadow">
             Register
-          </button>
+          </button> */}
         </div>
 
         {/* Mobile Hamburger */}
