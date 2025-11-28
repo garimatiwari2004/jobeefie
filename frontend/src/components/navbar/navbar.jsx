@@ -15,7 +15,7 @@ export default function Navbar() {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/api/onboarding/${user.id}`
+        `https://jobeefie-backend.onrender.com/api/onboarding/${user.id}`
       );
 
       // If user has not completed onboarding → redirect
