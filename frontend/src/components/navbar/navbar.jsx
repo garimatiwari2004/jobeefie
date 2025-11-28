@@ -1,15 +1,52 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useClerk, UserButton, useUser } from "@clerk/clerk-react";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const { isSignedIn } = useUser();
+  const { isSignedIn, user } = useUser();   // ✅ FIXED
   const clerk = useClerk();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+  async function checkOnboarding() {
+    if (!isSignedIn || !user) return;
+
+    try {
+      const res = await fetch(
+        `http://localhost:5000/api/onboarding/${user.id}`
+      );
+
+      // If user has not completed onboarding → redirect
+      if (res.status === 404) {
+        navigate("/onboarding");
+        return;
+      }
+
+      // If request failed for another reason
+      if (!res.ok) {
+        console.error("Unexpected error checking onboarding");
+        return;
+      }
+
+      const data = await res.json();
+
+      // If exists but hasn't onboarded
+      if (!data.hasOnboarded) {
+        navigate("/onboarding");
+      }
+
+    } catch (err) {
+      console.error("Onboarding check failed:", err);
+    }
+  }
+
+  checkOnboarding();
+}, [isSignedIn, user]);
 
   return (
-    <nav className="w-full fixed z-50 shadow-sm bg-white">
+    <nav className="w-full fixed top-0 left-0  z-50 shadow-sm bg-white">
       <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo Section */}
         <div className="flex items-center gap-2">
@@ -57,8 +94,8 @@ export default function Navbar() {
           )}
 
           {/* <button className="px-5 py-2 rounded-lg bg-orange-600 text-white font-semibold hover:bg-orange-700 shadow">
-            Register
-          </button> */}
+              Register
+            </button> */}
         </div>
 
         {/* Mobile Hamburger */}
@@ -71,11 +108,11 @@ export default function Navbar() {
       {/* 🚀 Mobile Slide-in Panel from Right */}
       <div
         className={`
-    fixed top-0 right-0 h-full w-64 bg-white shadow-xl z-40 
-    transform transition-transform duration-300 
-    md:hidden
-    ${open ? "translate-x-0" : "translate-x-full"}
-  `}
+      fixed top-0 right-0 h-full w-64 bg-white shadow-xl z-40 
+      transform transition-transform duration-300 
+      md:hidden
+      ${open ? "translate-x-0" : "translate-x-full"}
+    `}
       >
         {/* Close (X) button inside the panel */}
         <button
