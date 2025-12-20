@@ -1,14 +1,20 @@
 import { CirclePlus, TrendingUp } from "lucide-react";
 import office from "../homepage/assetshome/office.webp";
+//
+// #0f2027
+// → 
+// #203a43
+// → 
+// #2c5364
 
 export default function Hero() {
   return (
     <section
-      className="min-h-[85vh] px-5 md:px-12 lg:px-20 py-12 flex items-center"
-      style={{
-        backgroundImage:
-          "linear-gradient(109.6deg, rgba(62,161,219,1) 11.2%, rgba(93,52,236,1) 100.2%)",
-      }}
+      className="min-h-screen px-5 md:px-12 lg:px-20 py-12 flex items-center bg-gradient-to-r from-[#0f2027] via-[#203a43] to-[#2c5364]"
+      // style={{
+      //   backgroundImage:
+      //     "linear-gradient(109.6deg, rgba(62,161,219,1) 11.2%, rgba(93,52,236,1) 100.2%)",
+      // }}
     >
       <div className="container mx-autompx-5 md:px-10 flex flex-col lg:flex-row items-center justify-center gap-12">
 
@@ -23,7 +29,7 @@ export default function Hero() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
               Launch your career
             </h1>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-yellow-200 leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-yellow-400 leading-tight">
               Journey today
             </h1>
           </div>

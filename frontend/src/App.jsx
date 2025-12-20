@@ -6,9 +6,8 @@ import Footer from "./components/footer/footer";
 import Navbar from "./components/navbar/navbar";
 import HowItWorks from "./components/homepage/howitworks";
 import TestimonialCarousel from "./components/homepage/carousel";
-import OnboardingForm from "./components/onboardingform/onboardingform";
-// import Login from "./components/auth/login";
-// import Signup from "./components/auth/signup";
+
+import ResumeUploader from "./components/ResumeUploader/ResumeUploader";
 
 function App() {
   return (
@@ -24,14 +23,16 @@ function App() {
               <AItools />
               <HowItWorks/>
               <TestimonialCarousel/>
+              <Footer/>
             </>
           }
         />
-        {/* <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} /> */}
-        <Route path="/onboarding" element={<OnboardingForm />} />
+        <Route path="/resume" element={<ResumeUploader />} />
+        
+        
+        
       </Routes>
-      <Footer/>
+      
     </BrowserRouter>
   );
 }

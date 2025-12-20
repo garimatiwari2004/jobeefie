@@ -1,4 +1,6 @@
 import { ArrowRight, Brain, ChartAreaIcon, CloudLightning, File, Mic, Text, TrendingUp } from "lucide-react";
+import { Link } from "react-router-dom";
+
 
 export default function AItools() {
   return (
@@ -44,9 +46,9 @@ export default function AItools() {
           </p>
 
           {/* CTA */}
-          <div className="mt-5 flex items-center gap-2 text-orange-600 font-semibold cursor-pointer hover:underline">
+          <Link to="/resume" className="mt-5 flex  items-center gap-2 text-orange-600 font-semibold cursor-pointer hover:underline">
             Try Now <ArrowRight size={18} />
-          </div>
+          </Link>
         </div>
         <div className="p-6 rounded-2xl bg-linear-to-b from-blue-100 to-white hover:bg-linear-to-b hover:from-blue-300 hover:to-white shadow-md w-full text-black hover:text-red-600 max-w-sm hover:scale-102 hover:border hover:border-orange-400 ">
           {/* Icon */}
@@ -72,9 +74,9 @@ export default function AItools() {
           </p>
 
           {/* CTA */}
-          <div className="mt-5 flex  items-center gap-2 text-orange-600 font-semibold cursor-pointer hover:underline">
+          <Link to="/mock-interview" className="mt-5 flex  items-center gap-2 text-orange-600 font-semibold cursor-pointer hover:underline">
             Try Now <ArrowRight size={18} />
-          </div>
+          </Link>
         </div>
         <div className="p-6 rounded-2xl bg-linear-to-b from-red-100 to-white hover:bg-linear-to-b hover:from-red-300 hover:to-white shadow-md w-full text-black hover:text-red-600 max-w-sm hover:scale-102 hover:border hover:border-orange-400 ">
           {/* Icon */}
